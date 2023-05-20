@@ -76,8 +76,7 @@ Location CitiesManager::extractLoc(const string& fileName,
 */
 bool CitiesManager::isCityExist(const string& cityName) const
 {
-	auto it = _umapCities.find(cityName);
-	return it != _umapCities.end();
+	return _umapCities.find(cityName) != _umapCities.end();
 }
 
 
@@ -134,18 +133,10 @@ mmapLocToCityByX CitiesManager::findIntersectionSquare(const Location& centerLoc
 {
 
 	// find the bounds iterators
-	auto itBeginX = _mmapCitiesX.lower_bound(
-		Location(centerLoc._x - radius, 0)
-	);
-	auto itEndX = _mmapCitiesX.upper_bound(
-		Location(centerLoc._x + radius, 0)
-	);
-	auto itBeginY = _mmapCitiesY.lower_bound(
-		Location(0, centerLoc._y - radius)
-	);
-	auto itEndY = _mmapCitiesY.upper_bound(
-		Location(0, centerLoc._y + radius)
-	);
+	auto itBeginX = _mmapCitiesX.lower_bound( Location(centerLoc._x - radius, 0) );
+	auto itEndX = _mmapCitiesX.upper_bound( Location(centerLoc._x + radius, 0) );
+	auto itBeginY = _mmapCitiesY.lower_bound( Location(0, centerLoc._y - radius) );
+	auto itEndY = _mmapCitiesY.upper_bound( Location(0, centerLoc._y + radius) );
 
 	mmapLocToCityByX mmapCitiesY(itBeginY, itEndY); // technical, for the intersection
 
