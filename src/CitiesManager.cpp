@@ -108,7 +108,7 @@ void CitiesManager::printSearchResults(const string& cityName, double radius, co
 	int numOfNothCities = std::count_if(closest, farthest,
 		[&](const auto& pair) {
 			return _umapCities.find(pair.second)->
-				second._y > centerCityLoc._y;
+				second._x < centerCityLoc._x;
 		});
 	
 	// print the results
